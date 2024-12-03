@@ -32,10 +32,3 @@ jobs:
       - name: Run tests
         run: |
           pytest test_initializer.py
-
-      - name: Upload coverage report (optional)
-        if: success()
-        run: |
-          # Optionally upload coverage report if you're using one
-          pip install coverage
-          coverage report
