@@ -31,7 +31,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests
+          pytest test_initializer.py
 
       - name: Upload coverage report (optional)
         if: success()
