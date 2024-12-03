@@ -3,7 +3,7 @@ import subprocess
 
 
 def delete_using_subprocess(path):
-    subprocess.run(["rm", path, "-r", "-f" ], check=True)
+    subprocess.run(["rm", path, "-r", "-f"], check=True)
 
 
 def drop_read_only(path):
@@ -15,7 +15,7 @@ def drop_read_only(path):
 
 def delete_git_folder(directory):
     """Deletes .git folder from a directory"""
-    git_folder_path = os.path.join(directory, '.git')
+    git_folder_path = os.path.join(directory, ".git")
 
     if os.path.exists(git_folder_path):
         try:
@@ -23,3 +23,12 @@ def delete_git_folder(directory):
         except PermissionError:
             drop_read_only(git_folder_path)
             shutil.rmtree(git_folder_path)
+
+
+def force_del_file(path):
+    return delete_using_subprocess(path)
+
+
+def force_del_folder(path):
+    while os.path.exists(path):
+        subprocess.run(["rm", "-r", path, "-f"], check=True)
