@@ -1,0 +1,7 @@
+dist/
+.idea/
+ff
+not_gitmodules.egg-info/
+setup.py
+*.pyc
+__pycache__/
