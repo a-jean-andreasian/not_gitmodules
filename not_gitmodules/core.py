@@ -14,7 +14,7 @@ def initializer(
     not_gitmodules = read_yaml(yaml_config_path)
     ensure_dir_exists(root_dir_name)
 
-    for directory, repo_url in not_gitmodules.get("repos", {}).items():
+    for directory, repo_url in not_gitmodules.items():
         delete_git_folder(root_dir_name)
 
         clone_repo(root_dir_name, directory, repo_url)

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='not_gitmodules',
-    version='0.1.3.2',
+    version='0.2',
     packages=find_packages(),
     license='Custom License',
     entry_points={

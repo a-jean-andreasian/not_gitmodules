@@ -93,6 +93,22 @@ or
 not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name>
 ```
 
+
+### Do not forget to add `not_gitmodules` to `requirements.txt`
+
+Run 
+
+```bash
+pip show not_gitmodules
+```
+
+Check the `Version` and include it to `requirements.txt`
+
+Example:
+```text
+not_gitmodules~=0.2
+```
+
 ---
 
 ## Possible Issues with Private Repositories
