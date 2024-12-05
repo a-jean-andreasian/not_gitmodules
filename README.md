@@ -2,9 +2,9 @@
 
 ---
 
-## Why this?
+## Why `not_gitmodules`?
 
-1. This is how simple `gitmodules` should be. Add and remove modules without caring about irrelevant stuff. No *
+1. `not_gitmodules` demonstrate how simple and elegant `gitmodules` should be to those developers who enjoy their lives. Add and remove modules without caring about irrelevant stuff. No *
    *shitshow**, just simplicity.
 2. Production-use friendly. This is documented in the license.
 3. No third-party libraries are required; only built-in tools are used.
