@@ -4,7 +4,8 @@
 
 ## Why `not_gitmodules`?
 
-1. `not_gitmodules` demonstrate how simple and elegant `gitmodules` should be to those developers who enjoy their lives. Add and remove modules without caring about irrelevant stuff. No *
+1. `not_gitmodules` demonstrate how simple and elegant `gitmodules` should be to those developers who enjoy their lives.
+   Add and remove modules without caring about irrelevant stuff. No *
    *shitshow**, just simplicity.
 2. Production-use friendly. This is documented in the license.
 3. No third-party libraries are required; only built-in tools are used.
@@ -22,47 +23,75 @@
   ```
 
 ---
+Here's the updated `README.md` snippet with the changes you requested:
+
+---
 
 ## Usage
 
 1. **IMPORTANT:** Create a `notgitmodules.yaml` file in your project's root directory.
 
- ```yaml
- repos:
-   # directory: url (ssh or https)
+```yaml
+repos:
+  # directory: url (ssh or https)
 
-   # Example
-   file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
- ```
-
+  # Example
+  file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
+```
 
 2. Let `not_gitmodules` do the job.
 
-- **Example with Code**: 
+> ### Example with Code:
+>
+> Pass the path to the `initializer` function:
+> ```python
+> from not_gitmodules import initializer
+> 
+> initializer('custom/path/to/notgitmodules.yaml')
+> ```
+> or
+> ```python
+> from not_gitmodules import initializer
+> 
+> initializer()  # if notgitmodules.yaml exists in the project root
+> ```
 
-  Pass the path to the `initializer` function:
-   ```python
-   from not_gitmodules import initializer
+### Example with CLI:
 
-   initializer('/path/to/notgitmodules.yaml')
-   ```
+#### 1. Install the library locally if you cloned the repo (**optional**) :
 
-- **Example with CLI**:
+  ```bash
+  pip install .
+  ```
 
-   Install the library locally if you cloned the repo:
+---
 
-   ```bash
-   pip install .
-   ```
+#### 2. Install the modules directly from the terminal:
 
-   Once installed, you can delete the local repo from your system (the library is now saved in the virtual environment
-   or globally).
+>#### Flags
+>
+>| Flag                | Description                                                             |
+>|---------------------|-------------------------------------------------------------------------|
+>| `-d`, `--dir_name`  | Specify a directory name where the modules will be saved (optional).    |
+>| `-y`, `--yaml-path` | Specify a custom location for the `notgitmodules.yaml` file (optional). |
 
-   Run the `not_gitmodules` command directly from the terminal:
+### Default command:
 
-   ```bash
-   not_gitmodules
-   ```
+```bash
+not_gitmodules install
+```
+
+### Command pattern:
+
+```bash
+not_gitmodules install --yaml-path </path/to/notgitmodules.yaml>  --dir_name <directory_name>
+```
+
+or
+
+```bash
+not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name>
+```
 
 ---
 

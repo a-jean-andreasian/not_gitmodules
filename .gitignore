@@ -5,3 +5,7 @@ not_gitmodules.egg-info/
 setup.py
 *.pyc
 __pycache__/
+/notgitmodules.yaml
+/build/
+/my_gitmodules/
+/manual_test.py

@@ -4,7 +4,7 @@ from .parts import delete_git_folder, ensure_dir_exists, extract_repo_name_from_
 
 def initializer(
     yaml_config_path: str = 'notgitmodules.yaml',
-    root_dir_name="no_gitmodules"
+    root_dir_name="my_gitmodules"
 ):
     """
     :param yaml_config_path: The path to notgitmodules.yaml file

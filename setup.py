@@ -2,11 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='not_gitmodules',
-    version='0.1.3.1',
+    version='0.1.3.2',
     packages=find_packages(),
     license='Custom License',
     entry_points={
         'console_scripts': [
+            'not_gitmodules install=not_gitmodules.cli:cli',
             'not_gitmodules=not_gitmodules.cli:cli',
         ],
     },
