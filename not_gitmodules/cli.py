@@ -19,6 +19,6 @@ def cli():
         help="The name of the directory the modules will be saved in. By default it's my_gitmodules."
     )
 
-    args = arg_parser.parse_args()
+    args, unknown = arg_parser.parse_known_args()
 
     initializer(yaml_config_path=args.yaml_path, root_dir_name=args.dir_name)
