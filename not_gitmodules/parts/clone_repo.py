@@ -24,6 +24,6 @@ def clone_repo(root_dir_name, directory_name, url):
         )
         print(f"Successfully cloned to {target_path}.")
     except subprocess.CalledProcessError as e:
-        print(f"Failed to clone {url}: {e.stderr.decode()}")
+        print(f"Failed to clone {url}: {e.stderr}")
     except FileExistsError:
         print(f"Target path {target_path} already exists.")
