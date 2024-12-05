@@ -34,8 +34,8 @@ class TestInitializerFunction(unittest.TestCase):
         initializer("notgitmodules.yaml")
 
         expected_calls = [
-            call("Directory 'my_gitmodules\\file_manager' already exists. Skipping..."),
-            call("Failed to clone https://github.com/invalid_repo: error"),
+            call("Directory 'my_gitmodules/file_manager' already exists. Skipping..."),
+            call("Failed to clone invalid_repo: error"),
         ]
 
         self.assertTrue(any(call in mock_print.mock_calls for call in expected_calls))
