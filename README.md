@@ -25,29 +25,29 @@
 
 ## Usage
 
-**IMPORTANT:** Create a `notgitmodules.yaml` file in your project's root directory.
+1. **IMPORTANT:** Create a `notgitmodules.yaml` file in your project's root directory.
 
-1. **Example with Code**:
+ ```yaml
+ repos:
+   # directory: url (ssh or https)
 
-   Create a `notgitmodules.yaml` file:
+   # Example
+   file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
+ ```
 
-   ```yaml
-   repos:
-     # directory: url (ssh or https)
 
-     # Example
-     file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
-   ```
+2. Let `not_gitmodules` do the job.
 
-   Then pass the path to the `initializer` function:
+- **Example with Code**: 
 
+  Pass the path to the `initializer` function:
    ```python
    from not_gitmodules import initializer
 
    initializer('/path/to/notgitmodules.yaml')
    ```
 
-2. **Example with CLI**:
+- **Example with CLI**:
 
    Install the library locally if you cloned the repo:
 
@@ -58,7 +58,7 @@
    Once installed, you can delete the local repo from your system (the library is now saved in the virtual environment
    or globally).
 
-   Run `not_gitmodules` directly from the terminal:
+   Run the `not_gitmodules` command directly from the terminal:
 
    ```bash
    not_gitmodules
