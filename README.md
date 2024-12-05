@@ -32,11 +32,9 @@ Here's the updated `README.md` snippet with the changes you requested:
 1. **IMPORTANT:** Create a `notgitmodules.yaml` file in your project's root directory.
 
 ```yaml
-repos:
-  # directory: url (ssh or https)
-
-  # Example
-  file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
+# directory_name: url (ssh or https)
+# example:
+file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
 ```
 
 2. Let `not_gitmodules` do the job.
