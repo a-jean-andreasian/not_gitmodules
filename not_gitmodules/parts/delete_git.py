@@ -1,16 +1,12 @@
 import os, shutil, stat
-import subprocess
-
-
-def delete_using_subprocess(path):
-    subprocess.run(["rm", path, "-r", "-f"], check=True)
+from pathlib import Path
 
 
 def drop_read_only(path):
     try:
         os.chmod(path, stat.S_IWRITE)
     except PermissionError:
-        delete_using_subprocess(path)
+        ...
 
 
 def delete_git_folder(directory):
@@ -20,15 +16,10 @@ def delete_git_folder(directory):
     if os.path.exists(git_folder_path):
         try:
             shutil.rmtree(git_folder_path)
-        except PermissionError:
-            drop_read_only(git_folder_path)
-            shutil.rmtree(git_folder_path)
-
-
-def force_del_file(path):
-    return delete_using_subprocess(path)
-
-
-def force_del_folder(path):
-    while os.path.exists(path):
-        subprocess.run(["rm", "-r", path, "-f"], check=True)
+        except PermissionError as err:
+            read_only_fp = str(err).split('denied:')[1].strip().strip("'")
+            p = Path(read_only_fp)
+            drop_read_only(p)
+            return delete_git_folder(directory)
+        else:
+            print(git_folder_path, 'was successfully deleted.')
