@@ -188,6 +188,12 @@ If cloning fails but you have access to the repository, provide the HTTPS repo U
 in `notgitmodules.yaml`.  
 
 ---
+## Worth to mention
+
+- `not_gitmodules` doesn't require for you to keep the folders with modules. You can safely .gitignore/delete them. 
+- Do not use matching names for the repositories in `notgitmodules.yaml` file. In that case only the first repository will be downloaded and the second one - skipped.
+
+---
 ## License  
   
 This project is licensed under a **Custom License**. See the [LICENSE](./LICENSE) file for full details.  
@@ -195,7 +201,6 @@ This project is licensed under a **Custom License**. See the [LICENSE](./LICENSE
 Key points:  
   
 - You may use this project for commercial or personal purposes.  
-- You may not claim ownership of this project or its code.  
 
 ---
 ## Author
