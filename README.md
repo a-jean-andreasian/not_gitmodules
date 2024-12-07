@@ -1,152 +1,208 @@
 # Not Gitmodules
 
 ---
+# What's  `not_gitmodules`?
 
-## Why `not_gitmodules`?
-
-1. `not_gitmodules` demonstrate how simple and elegant `gitmodules` should be to those developers who enjoy their lives.
-   Add and remove modules without caring about irrelevant stuff. No *
-   *shitshow**, just simplicity.
-2. Production-use friendly. This is documented in the license.
-3. No third-party libraries are required; only built-in tools are used.
-4. OS-agnostic. Written in Python, meaning it can be used in any type of project, especially those running on Linux.
+`not_gitmodules` is a lightweight, production-ready Python utility designed to simplify managing external modules in your project.
 
 ---
+# Why `not_gitmodules`?
 
-## Installation
+1. Simplicity: Minimalistic design—no unnecessary complexities.
+2. Production-Ready: Explicitly licensed for production use.
+3. Dependency-Free: Uses only Python's built-in tools.
+4. OS-Agnostic: Works seamlessly on Linux and any other platform where Python runs.
 
-- Clone the repository using Git.
-- Install via pip:
+--- 
+## Installation and Usage
 
-  ```bash
-  pip install not-gitmodules
-  ```
+### Installation
+
+Choose one of the following methods to install `not_gitmodules`:
+
+#### 1. Clone the repository:
+```bash  
+git clone https://github.com/Armen-Jean-Andreasian/not_gitmodules.git
+```  
+  
+#### 2. Install via pip:  
+```bash  
+pip install not-gitmodules
+```  
 
 ---
-Here's the updated `README.md` snippet with the changes you requested:
+# Preparation and Usage Options  
 
----
-
-## Usage
-
-1. **IMPORTANT:** Create a `notgitmodules.yaml` file in your project's root directory.
-
+## 1. Preparation (IMPORTANT)  
+  
+Create a `notgitmodules.yaml` file in your project's root directory.  
+  
 ```yaml
-# directory_name: url (ssh or https)
-# example:
+# directory_name: url (ssh or https)  
+  
+# Example:  
 file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
-```
+```  
 
-2. Let `not_gitmodules` do the job.
+## 2. Usage Options
 
-> ### Example with Code:
->
-> Pass the path to the `initializer` function:
-> ```python
-> from not_gitmodules import initializer
-> 
-> initializer('custom/path/to/notgitmodules.yaml')
-> ```
-> or
-> ```python
-> from not_gitmodules import initializer
-> 
-> initializer()  # if notgitmodules.yaml exists in the project root
-> ```
+You can use `not_gitmodules` in two ways:
+1. **As a part of your project's code.**  
+   Just clone/download this repository and include it to your project.
+    - **Pros:** No additional dependencies or overhead.
+    - **Cons:** No CLI usage; increases the project's file size.
 
-### Example with CLI:
 
-#### 1. Install the library locally if you cloned the repo (**optional**) :
+2. **As a Python Package (Recommended).**  
+   Install using **pip**
+- **Pros:** This method allows you to leverage CLI commands for better flexibility, ease with Docker, keeps the project lightweight
+    - **Cons:** Additional dependency
 
-  ```bash
-  pip install .
-  ```
+**Not recommended** option: clone/download this repository and run `pip install .`
 
 ---
+# Usage
+ 
+## A. As Part of Your Project's Code
 
-#### 2. Install the modules directly from the terminal:
+### Command:
 
->#### Flags
->
->| Flag                | Description                                                             |
->|---------------------|-------------------------------------------------------------------------|
->| `-d`, `--dir_name`  | Specify a directory name where the modules will be saved (optional).    |
->| `-y`, `--yaml-path` | Specify a custom location for the `notgitmodules.yaml` file (optional). |
+```bash  
+git clone https://github.com/Armen-Jean-Andreasian/not_gitmodules.git
+```  
+  
+### Implementation:  
+  
+- If `notgitmodules.yaml` is located in the project root:  
+  
+```python
+from not_gitmodules import initializer  
+  
+initializer()  
+```  
 
-### Default command:
+- If `notgitmodules.yaml` is located somewhere else. _Or has a different name._
+```python
+from not_gitmodules import initializer  
+  
+initializer('custom/path/to/config.yaml') # Specify a custom path  
+```  
+  
+---  
+## B. As a Python Package (Recommended)
 
-```bash
+This method allows you to leverage CLI commands for better flexibility.
+
+
+### 1. Install the package
+
+```  
+pip install not_gitmodules 
+```  
+
+---  
+### 2. Add it to `requirements.txt`  
+  
+As this package is not used in code itself, it's easy to forget to add. So better to add in advance.  
+  
+#### Run:   
+
+```bash  
+pip show not_gitmodules
+```  
+  
+**Check the `Version` and include it to `requirements.txt` with `~=` assignment:**  
+  
+- Example:  
+    ```text
+    not_gitmodules~=0.2
+    ```
+  
+---  
+### 3. Install the modules:  
+  
+>#### Flags  
+>  
+>| Flag                | Description                                                             |  
+>|---------------------|-------------------------------------------------------------------------|  
+>| `-d`, `--dir_name`  | Specify a directory name where the modules will be saved (optional).    |  
+>| `-y`, `--yaml-path` | Specify a custom location for the `notgitmodules.yaml` file (optional). |  
+  
+### To install modules via the terminal:  
+  
+- ### Default command:  
+  
+This will look for `notgitmodules.yaml` in the project root and create a directory named `my_gitmodules` in the root to download the modules into.  
+
+```bash  
 not_gitmodules install
 ```
 
-### Command pattern:
+- ### Command pattern:  
 
-```bash
+```bash  
 not_gitmodules install --yaml-path </path/to/notgitmodules.yaml>  --dir_name <directory_name>
-```
+```  
 
-or
+or  
 
-```bash
+```bash  
 not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name>
 ```
 
+---  
+### 4. Dockerizing  
 
-### Do not forget to add `not_gitmodules` to `requirements.txt`
+Double-check that you:  
+1. Created a `notgitmodules.yaml` 
+2. Included `not_gitmodules` version to `requirements.txt`  
 
-Run 
+Then:  
+3. Create your `Dockerfile`. Example:  
 
-```bash
-pip show not_gitmodules
+```dockerfile  
+FROM python:3.10-slim  
+
+# Install git for not_gitmodules
+RUN apt-get update && apt-get install -y git  
+  
+WORKDIR /app  
+  
+COPY . .  
+  
+RUN pip install --no-cache-dir -r requirements.txt   
+
+# copy the notgitmodules.yaml file (default). Modify accordingly.
+COPY notgitmodules.yaml .
+
+# install modules using not_gitmodules
+RUN not_gitmodules install -y notgitmodules.yaml -d my_directory  
+  
+CMD ["python", "main.py"]
 ```
 
-Check the `Version` and include it to `requirements.txt`
-
-Example:
-```text
-not_gitmodules~=0.2
-```
+---
+## Possible Issues with Private Repositories  
+  
+If cloning fails but you have access to the repository, provide the HTTPS repo URL instead of SSH  
+in `notgitmodules.yaml`.  
 
 ---
-
-## Possible Issues with Private Repositories
-
-If cloning fails but you have access to the repository, provide the HTTPS repo URL instead of SSH
-in `notgitmodules.yaml`.
-
----
-
-## That's it!
-
-No more wasted time with `.git`, metadata, and other bloat that offer no real tradeoff.
+## License  
+  
+This project is licensed under a **Custom License**. See the [LICENSE](./LICENSE) file for full details.  
+  
+Key points:  
+  
+- You may use this project for commercial or personal purposes.  
+- You may not claim ownership of this project or its code.  
 
 ---
-
-## Recommended Modifications
-
-After cloning the repository, delete unnecessary files if you're customizing or using the project for specific purposes:
-
-- `not_gitmodules\.gitignore`
-- `not_gitmodules\LICENSE`
-- `not_gitmodules\README.md`
-- `not_gitmodules\setup.py` (if you're not using it as a CLI tool or environment package)
-- `not_gitmodules/cli.py` (if you're not using the installer in a CLI context)
-
----
-
 ## Author
 
-Armen-Jean Andreasian, 2024
+Armen-Jean Andreasian, 2024  
 
 ---
-
-## License
-
-This project is licensed under a **Custom License**. See the [LICENSE](./LICENSE) file for full details.
-
-Key points:
-
-- You may use this project for commercial or personal purposes.
-- You may not claim ownership of this project or its code.
-
----
+<div style="text-align: center;">
+  <img src="https://i.ibb.co/FbDRqnT/That-s-all-Folks-tagline.webp" alt="That's it" width="400"/>
+</div>
