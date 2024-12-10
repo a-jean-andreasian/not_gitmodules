@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-__version__ = "0.4.1"
+__version__ = "0.4.3"
 
 setup(
     name='not_gitmodules',
-    version='0.4.1',
+    version='0.4.3',
     packages=find_packages(),
     license='Custom License',
     entry_points={
