@@ -11,7 +11,7 @@
 1. Simplicity: Minimalistic design—no unnecessary complexities.
 2. Production-Ready: Explicitly licensed for production use.
 3. Dependency-Free: Uses only Python's built-in tools.
-4. OS-Agnostic: Works seamlessly on Linux and any other platform where Python runs.
+4. OS-Agnostic: Works seamlessly on Linux, MacOS and any other platforms where Python is available by default.
 
 --- 
 ## Installation and Usage
