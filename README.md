@@ -1,10 +1,17 @@
-# Not Gitmodules
+
+<div style="text-align: center;">
+  <img src=".github/pic1.png" />
+</div>
 
 ---
 
 # What's  `not_gitmodules`?
 
-`not_gitmodules` is a lightweight, production-ready Python utility designed to simplify managing external modules in
+Watch the intro:
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/QkFxP_6NA84)](https://youtu.be/QkFxP_6NA84)
+
+Long story short: `not_gitmodules` is a lightweight, production-ready Python utility designed to simplify managing external modules in
 your project.
 
 ---
@@ -167,8 +174,11 @@ not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name> -t
 ```
 
 ---
+
 ## Comparison
-Usually with undefined amount of workers in `ThereadPool` in parallel mode take more than **52%** less time than in parallel mode.
+
+Usually with undefined amount of workers in `ThereadPool` in parallel mode take more than **52%** less time than in
+parallel mode.
 
 
 ---  
@@ -237,6 +247,7 @@ Key points:
 Armen-Jean Andreasian, 2024
 
 ---
+
 <div style="text-align: center;">
-  <img src="https://i.ibb.co/FbDRqnT/That-s-all-Folks-tagline.webp" alt="That's it" width="400"/>
+  <img src=".github/pic2.png" />
 </div>
