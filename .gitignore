@@ -11,3 +11,5 @@ __pycache__/
 /manual_test.py
 /dev/config.yaml
 /config.yaml
+/dev/my_gitmodules/
+/dev/my_libs/

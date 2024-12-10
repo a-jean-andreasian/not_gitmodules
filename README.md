@@ -168,12 +168,8 @@ not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name> -t
 
 ---
 ## Comparison
-For eleven repos with undefined amount of workers in `ThereadPool` :
+Usually with undefined amount of workers in `ThereadPool` in parallel mode take more than **52%** less time than in parallel mode.
 
-- The execution of in sequential mode took 35.13206000009086 seconds.
-- The execution of in parallel mode took 16.677515499992296 seconds.
-
-We get **52.53%** performance boost.
 
 ---  
 
