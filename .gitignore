@@ -9,3 +9,7 @@ __pycache__/
 /build/
 /my_gitmodules/
 /manual_test.py
+/dev/config.yaml
+/config.yaml
+/dev/my_gitmodules/
+/dev/my_libs/
