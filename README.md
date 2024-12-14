@@ -25,6 +25,16 @@ your project.
 
 --- 
 
+## Important note
+
+1. not_gitmodules just like Gitmodules doesn't `automatically install the dependencies`/`do not include the dependencies to your project dependency file` of the submodule.
+2. not_gitmodules doesn't `download the submodules mentioned in the not_gimodules.yaml file of the submodule`.
+- Reason: it's practically inefficient, may lead to bugs and bottlenecks, and better to maintain manually.
+
+How to handle?
+1. Move the containing of the dependency file to your project.
+2. Move submodules to your `not_gimodules.yaml` file and rerun install accordingly.
+
 ## Installation and Usage
 
 ### Installation
