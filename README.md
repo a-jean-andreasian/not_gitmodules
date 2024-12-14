@@ -33,7 +33,9 @@ your project.
 
 How to handle?
 1. Move the containing of the dependency file to your project's dependency file and rerun the dependency installer.
+
 2.1. Important note. `not_gitmodules` keeps the view of keeping the project structure clean. All submodules amoung one project/micro-service need to go to one folder. It's recommended to use dependency injection in case of having nested not_gitmodules.
+
 2.2. Move submodules to your `not_gimodules.yaml` file and rerun install accordingly.
 
 ## Installation and Usage
