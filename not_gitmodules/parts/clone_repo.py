@@ -2,7 +2,7 @@ import os
 import subprocess
 
 
-def clone_repo(root_dir_name, directory_name, url):
+def clone_repo(root_dir_name, directory_name, url) -> bool | None:
     """Clone the repository into the specified directory."""
     target_path = os.path.join(root_dir_name, directory_name)
 
@@ -27,3 +27,5 @@ def clone_repo(root_dir_name, directory_name, url):
         print(f"Failed to clone {url}: {e.stderr}")
     except FileExistsError:
         print(f"Target path {target_path} already exists.")
+    else:
+        return True

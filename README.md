@@ -67,8 +67,14 @@ Create a `notgitmodules.yaml` file in your project's root directory.
 ```yaml
 # directory_name: url (ssh or https)  
 
-# Example:  
-file_reader: https://github.com/Free-Apps-for-All/file_manager_git_module
+# Example: 
+utils:
+  file_manager: https://github.com/not-gitmodules/notgitmodules-file-manager-py
+  file_encryptor: https://github.com/not-gitmodules/notgitmodules-file-encryptor-py
+
+services:
+  forsaken_mail: https://github.com/malaohu/forsaken-mail
+  sim_mail: https://github.com/Webador/SlmMail
 ```  
 
 ## 2. Usage Options
@@ -149,7 +155,7 @@ pip show not_gitmodules
 
 - Example:
     ```text
-    not_gitmodules~=0.2
+    not_gitmodules~=0.0
     ```
 
 ---  
@@ -158,7 +164,6 @@ pip show not_gitmodules
 
 | Flag (all of them are optional) | Description                                                                                                                                                                                                                                      | Example                                                                                                                                |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| `-d`, `--dir_name`              | Specify the directory name where the modules will be saved. <br>By default, the modules will be saved in a directory named `my_gitmodules`.                                                                                                      | • `not_gitmodules -d custom_folder`: Saves the repositories in `custom_folder` folder                                                  |
 | `-y`, `--yaml-path`             | Specify a custom path for the `notgitmodules.yaml` configuration file. <br>By default, it looks for `notgitmodules.yaml` in the current working directory. Naming it `notgitmodules` is a matter of best practices; you can name it as you want. | • `not_gitmodules -y /path/to/custom_notgitmodules.yaml`: Uses a custom YAML file located at `/path/to/custom_notgitmodules.yaml`      |
 | `-t`, `--threaded`              | Enable threaded execution, where repositories are cloned in parallel (using threads). This flag is mutually exclusive with `-s`. <br> This is the default behavior if neither `-t` nor `-s` is specified.                                        | • `not_gitmodules -t`: Clones repositories in parallel using threads <br> • `not_gitmodules --threaded`: Same as `-t`, using long form |
 | `-s`, `--sequential`            | Enable sequential execution, where repositories are cloned one by one in the order they appear in the YAML file. This flag is mutually exclusive with `-t`.                                                                                      | • `not_gitmodules -s`: Clones repositories one by one in order <br> • `not_gitmodules --sequential`: Same as `-s`, using long form     |
@@ -177,13 +182,13 @@ not_gitmodules install
 - ### Command pattern:
 
 ```bash  
-not_gitmodules install --yaml-path </path/to/notgitmodules.yaml>  --dir_name <directory_name> --threaded
+not_gitmodules install --yaml-path </path/to/notgitmodules.yaml>  --threaded
 ```  
 
 or
 
 ```bash  
-not_gitmodules install -y </path/to/notgitmodules.yaml>  -d <directory_name> -t
+not_gitmodules install -y </path/to/notgitmodules.yaml>  -t
 ```
 
 ---
@@ -223,7 +228,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY notgitmodules.yaml .
 
 # install modules using not_gitmodules
-RUN not_gitmodules install -y notgitmodules.yaml -d my_directory -t
+RUN not_gitmodules install -y notgitmodules.yaml -t
   
 CMD ["python", "main.py"]
 ```

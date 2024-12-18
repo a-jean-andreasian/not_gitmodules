@@ -27,7 +27,6 @@ def test_sequentially(root_dir_name):
     initializer(
         yaml_config_path='dev/config.yaml',
         download_in_threads=False,
-        root_dir_name=root_dir_name
     )
 
 
@@ -36,7 +35,6 @@ def test_parallely(root_dir_name):
     initializer(
         yaml_config_path='dev/config.yaml',
         download_in_threads=True,
-        root_dir_name=root_dir_name
     )
 
 

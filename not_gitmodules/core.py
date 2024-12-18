@@ -3,28 +3,27 @@ from .parts import delete_git_folder, ensure_dir_exists, clone_repo, read_yaml, 
 from concurrent.futures import ThreadPoolExecutor
 
 
-def execute_sequentially(root_dir_name: str, yaml_content: dict):
-    for directory, repo_url in yaml_content.items():
-        clone_repo(root_dir_name=root_dir_name, directory_name=directory, url=repo_url)
+def proceed_task(root_dir_name, directory_name, repo_url):
+    """Packed-up collection of actions, to run in a separate thread."""
+    ensure_dir_exists(root_dir_name)
 
-        module_path = os.path.join(root_dir_name, directory)
+    if clone_repo(root_dir_name=root_dir_name, directory_name=directory_name, url=repo_url):
+        module_path = os.path.join(root_dir_name, directory_name)
         delete_git_folder(module_path)
         clean_github_leftovers(module_path)
+    # skipping else to not perform clean-up on skipped directories
 
 
-def execute_in_threads(root_dir_name: str, yaml_content: dict):
-    def proceed_task(root_dir_name, directory, repo_url):
-        """Packed-up collection of actions, to run in a separate thread."""
-        clone_repo(root_dir_name=root_dir_name, directory_name=directory, url=repo_url)
+def execute_sequentially(root_dir_name: str, repo_dict: dict):
+    for directory_name, repo_url in repo_dict.items():
+        proceed_task(root_dir_name, directory_name, repo_url)
 
-        module_path = os.path.join(root_dir_name, directory)
-        delete_git_folder(module_path)
-        clean_github_leftovers(module_path)
 
+def execute_in_threads(root_dir_name: str, repo_dict: dict):
     with ThreadPoolExecutor() as executor:
         futures = [
-            executor.submit(proceed_task, root_dir_name, directory, repo_url)
-            for directory, repo_url in yaml_content.items()
+            executor.submit(proceed_task, root_dir_name, directory_name, repo_url)
+            for directory_name, repo_url in repo_dict.items()
         ]
 
     for future in futures:
@@ -33,25 +32,20 @@ def execute_in_threads(root_dir_name: str, yaml_content: dict):
 
 def initializer(
     yaml_config_path: str = 'notgitmodules.yaml',
-    root_dir_name="my_gitmodules",
     download_in_threads: bool = True,
 ):
-    # Read yaml
-    # Ensure root_dir exists
-    # Clone the repo to root dir
-    # Clean-up
-
     """
+    Initializes the download and clean-up process.
+
     :param yaml_config_path: The path to notgitmodules.yaml file
-    :param root_dir_name: The name of directory where modules will be downloaded to.
     :param download_in_threads: If you want to clone repos simultaneously or one at a time
-    # :param max_threads: Maximum amount of allowed threads
-    :return:
     """
     yaml_content = read_yaml(yaml_config_path)
-    ensure_dir_exists(root_dir_name)
 
-    if download_in_threads:
-        execute_in_threads(root_dir_name, yaml_content)
-    else:
-        execute_sequentially(root_dir_name, yaml_content)
+    for root_dir_name, repo_dict in yaml_content.items():
+        ensure_dir_exists(root_dir_name)
+
+        if download_in_threads:
+            execute_in_threads(root_dir_name, repo_dict)
+        else:
+            execute_sequentially(root_dir_name, repo_dict)
