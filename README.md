@@ -191,7 +191,7 @@ CMD ["python", "main.py"]
    project/microservice need to go to one folder. It's recommended to use dependency injection in case of having nested `not_gitmodules`.
 7. **Possible bottleneck** with private repositories.
     -  If cloning fails, but you have access to the repository, provide the HTTPS repo URL instead of SSH url in YAML file.
-
+8. If your python version is incompatible with `PyYAML==6.0` try to install the compatible version of `PyYAML`.  
 
 ---
 
