@@ -13,3 +13,5 @@ __pycache__/
 /config.yaml
 /dev/my_gitmodules/
 /dev/my_libs/
+venv/
+

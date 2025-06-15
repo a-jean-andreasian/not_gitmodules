@@ -4,17 +4,21 @@ import subprocess
 from not_gitmodules import initializer
 from not_gitmodules.cli import cli
 
+module_for_test = "https://github.com/not-gitmodules/notgitmodules-file-manager-py"
+
 
 class TestInitializerFunction(unittest.TestCase):
     @patch(
         "builtins.open",
         new_callable=mock_open,
-        read_data="file_manager: https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module",
+        read_data=f"file_manager: {module_for_test}",
     )
     @patch("not_gitmodules.core.read_yaml")
     def test_initializer_with_valid_yaml(self, mock_read_yaml, mock_file):
         mock_read_yaml.return_value = {
-            "file_manager": "https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module"
+            "file_manager": {
+                "main": module_for_test
+            }
         }
 
         initializer("notgitmodules.yaml")
@@ -25,7 +29,11 @@ class TestInitializerFunction(unittest.TestCase):
     @patch("builtins.print")
     @patch("subprocess.run")
     def test_initializer_with_invalid_yaml(self, mock_subprocess, mock_print, mock_read_yaml, mock_file):
-        mock_read_yaml.return_value = {"file_manager": "invalid_repo"}
+        mock_read_yaml.return_value = {
+            "file_manager": {
+                "broken": "invalid_repo"
+            }
+        }
 
         mock_subprocess.side_effect = subprocess.CalledProcessError(
             returncode=1, cmd="git clone", stderr="error"
@@ -34,16 +42,17 @@ class TestInitializerFunction(unittest.TestCase):
         initializer("notgitmodules.yaml")
 
         expected_calls = [
-            call("Directory 'my_gitmodules/file_manager' already exists. Skipping..."),
+            call("Directory 'my_gitmodules/file_manager/broken' already exists. Skipping..."),
             call("Failed to clone invalid_repo: error"),
         ]
 
         self.assertTrue(any(call in mock_print.mock_calls for call in expected_calls))
 
+
     @patch(
         "builtins.open",
         new_callable=mock_open,
-        read_data="file_manager: https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module",
+        read_data=f"file_manager: {module_for_test}",
     )
     @patch("not_gitmodules.core.read_yaml")
     def test_cli_with_default_input(self, mock_read_yaml, mock_file):
