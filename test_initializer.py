@@ -16,7 +16,9 @@ class TestInitializerFunction(unittest.TestCase):
     @patch("not_gitmodules.core.read_yaml")
     def test_initializer_with_valid_yaml(self, mock_read_yaml, mock_file):
         mock_read_yaml.return_value = {
-            "file_manager": f"{module_for_test}",
+            "file_manager": {
+                "main": module_for_test
+            }
         }
 
         initializer("notgitmodules.yaml")
@@ -27,7 +29,11 @@ class TestInitializerFunction(unittest.TestCase):
     @patch("builtins.print")
     @patch("subprocess.run")
     def test_initializer_with_invalid_yaml(self, mock_subprocess, mock_print, mock_read_yaml, mock_file):
-        mock_read_yaml.return_value = {"file_manager": "invalid_repo"}
+        mock_read_yaml.return_value = {
+            "file_manager": {
+                "broken": "invalid_repo"
+            }
+        }
 
         mock_subprocess.side_effect = subprocess.CalledProcessError(
             returncode=1, cmd="git clone", stderr="error"
@@ -36,11 +42,12 @@ class TestInitializerFunction(unittest.TestCase):
         initializer("notgitmodules.yaml")
 
         expected_calls = [
-            call("Directory 'my_gitmodules/file_manager' already exists. Skipping..."),
+            call("Directory 'my_gitmodules/file_manager/broken' already exists. Skipping..."),
             call("Failed to clone invalid_repo: error"),
         ]
 
         self.assertTrue(any(call in mock_print.mock_calls for call in expected_calls))
+
 
     @patch(
         "builtins.open",
