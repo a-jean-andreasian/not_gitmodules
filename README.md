@@ -1,4 +1,4 @@
-# <img src=".github/logo_v2.png" alt="Not Gitmodules!" height="30" /> Not Gitmodules
+# <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/logo_v2.png" alt="Not Gitmodules!" height="30" /> Not Gitmodules
 
 ---
 
@@ -58,7 +58,7 @@ Choose the most convenient way to install Not Gitmodules:
 
 2. **Install via a package manager** and use **as a Python package** _(example with pip)_:
 
-    ![PyPI](https://img.shields.io/pypi/v/not-gitmodules)
+   ![PyPI](https://img.shields.io/pypi/v/not-gitmodules)
     ```bash  
     pip install not-gitmodules
     ```  
@@ -181,22 +181,22 @@ CMD ["python", "main.py"]
 
 1. Not Gitmodules **doesn't require to keep the folders** with modules. You can safely .gitignore or delete them.
 2. **Do not use matching names** for the repositories in `notgitmodules.yaml` file. In that case only the first repository
-  will be downloaded and the second one will be skipped.
+   will be downloaded and the second one will be skipped.
 3. Not Gitmodules **needs** `Git` and `PyYAML` for functioning.
 4. Not Gitmodules, just like Gitmodules, **doesn't automatically install the dependencies of submodules** _(such as requirements.txt for Python or package.json for JavaScript)_.
 5. Not Gitmodules **doesn't download the sub-dependency submodules** (if they are not defined properly for Git).
-   - Reason: it's practically inefficient, may lead to bugs and bottlenecks, and better to maintain manually.
-   - Solution: Include the sub-dependency submodule to YAML file manually.
+    - Reason: it's practically inefficient, may lead to bugs and bottlenecks, and better to maintain manually.
+    - Solution: Include the sub-dependency submodule to YAML file manually.
 6. Not Gitmodules keeps the view of keeping the project structure clean. All submodules among one
    project/microservice need to go to one folder. It's recommended to use dependency injection in case of having nested `not_gitmodules`.
-7. **Possible bottleneck** with private repositories. 
+7. **Possible bottleneck** with private repositories.
     -  If cloning fails, but you have access to the repository, provide the HTTPS repo URL instead of SSH url in YAML file.
 
 
 ---
 
 <div style="text-align: center;">
-  <img src=".github/pic1.png" width="300" height="300">
+  <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/pic1.png" width="300" height="300">
 </div>
 
 ---
@@ -218,6 +218,6 @@ Armen-Jean Andreasian, 2024
 ---
 
 <div style="text-align: center;">
-  <img src=".github/pic2.png" />
+  <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/pic2.png" />
 </div>
 

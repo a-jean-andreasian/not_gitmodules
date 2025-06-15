@@ -4,17 +4,19 @@ import subprocess
 from not_gitmodules import initializer
 from not_gitmodules.cli import cli
 
+module_for_test = "https://github.com/not-gitmodules/notgitmodules-file-manager-py"
+
 
 class TestInitializerFunction(unittest.TestCase):
     @patch(
         "builtins.open",
         new_callable=mock_open,
-        read_data="file_manager: https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module",
+        read_data=f"file_manager: {module_for_test}",
     )
     @patch("not_gitmodules.core.read_yaml")
     def test_initializer_with_valid_yaml(self, mock_read_yaml, mock_file):
         mock_read_yaml.return_value = {
-            "file_manager": "https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module"
+            "file_manager": f"{module_for_test}",
         }
 
         initializer("notgitmodules.yaml")
@@ -43,7 +45,7 @@ class TestInitializerFunction(unittest.TestCase):
     @patch(
         "builtins.open",
         new_callable=mock_open,
-        read_data="file_manager: https://github.com/Armen-Jean-Andreasian/FileManager-Git-Module",
+        read_data=f"file_manager: {module_for_test}",
     )
     @patch("not_gitmodules.core.read_yaml")
     def test_cli_with_default_input(self, mock_read_yaml, mock_file):
