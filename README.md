@@ -1,4 +1,4 @@
-# <img src=".github/logo_v2.png" alt="Not Gitmodules!" height="30" /> Not Gitmodules
+# <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/logo_v2.png" alt="Not Gitmodules!" height="30" /> Not Gitmodules
 
 ---
 
@@ -196,7 +196,7 @@ CMD ["python", "main.py"]
 ---
 
 <div style="text-align: center;">
-  <img src=".github/pic1.png" width="300" height="300">
+  <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/pic1.png" width="300" height="300">
 </div>
 
 ---
@@ -218,6 +218,6 @@ Armen-Jean Andreasian, 2024
 ---
 
 <div style="text-align: center;">
-  <img src=".github/pic2.png" />
+  <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/pic2.png" />
 </div>
 
