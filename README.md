@@ -1,7 +1,8 @@
 # <img src="https://raw.githubusercontent.com/a-jean-andreasian/not_gitmodules/refs/heads/master/.github/logo_v2.png" alt="Not Gitmodules!" height="30" /> Not Gitmodules
 
----
+[![](.github/yt_thumbnail.png)](https://youtu.be/-VQBF2N1hwI)
 
+---
 
 ## Introduction
 
@@ -10,6 +11,10 @@
   your project.
 - It's a replacement for Git Submodule which is: up to **10x faster**, **safer**, **simpler**, **cleaner** and the most
   importantly - **without headaches**.
+
+## Still have questions?
+
+👉 Watch the introduction [video](https://www.youtube.com/watch?v=-VQBF2N1hwI) on YouTube, where Snoop Dogg will gently explain everything!
 
 ---
 
@@ -30,14 +35,6 @@ Not Gitmodules will handle the rest for you.
 2. **Production-Ready**: Explicitly licensed for production use.
 3. **Dependency-Free**: Uses only Python's built-in tools.
 4. **OS-Agnostic**: Works seamlessly on Linux, MacOS and any other platforms where Python is available by default.
-
----
-
-## Still have questions?
-
-Watch the introduction video on YouTube, where Snoop Dogg will explain everything!
-
-[![](https://markdown-videos-api.jorgenkh.no/youtube/QkFxP_6NA84)](https://youtu.be/QkFxP_6NA84)
 
 ---
 
